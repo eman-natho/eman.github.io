@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Croatia national football team</title>
+  <style>
+   .form1{
+     padding:25px 490px; 
+     text-align: left;  
+   }
+   .bcolor{
+     background-color:rgb(180, 247, 205);
+     align-self: center;
+     align-items: center;
+   }
+  </style>
+ 
+</head>
+<body>
+  <h1  align="middle">Croatia National Football Team</h1>
+
+  <form action="https://formspree.io/f/moqpkgzq" method="POST" class="form1" id="firstForm">
+    <fieldset class = "bcolor">
+        
+    <label for="firstname"><u><b>Order Number:</b></u></label> <br>
+    <input type="text" name="firstname" id="ordernumber" value="29760734" disabled><br><br>
+      
+     <label for="firstName"><u><b>Enter Your Name:</b></u></label><br>
+     <input type="text" name="firstName" id="firstName" size="20" maxlength="20" ><br><br>
+    
+     <label for="familyname"><u><b>Enter Your Family Name:</b></u></label><br>
+     <input type="text" name="familyname" id="familyname" size="20" maxlength="20" ><br><br>
+    
+
+     <label ><u><b>shirt type:</b></u></label><br>
+     <input type="radio"  name="selectshirt" value="t-shirt"
+     onclick="calculateTotal()" />
+     T-shirt (10 ש"ח)<br>
+     <input type="radio"  name="selectshirt" value="sleeveless"
+     onclick="calculateTotal()" />
+     sleeveless (10 ש"ח)<br>
+     <input type="radio"  name="selectshirt" value="sweater"
+     onclick="calculateTotal()" />
+     sweater (20 ש"ח)<br>
+     <input type="radio"  name="selectshirt" value="hoodie"
+     onclick="calculateTotal()" />
+     hoodie (30 ש"ח)<br>
+     <input type="radio"  name="selectshirt" value="coat"
+     onclick="calculateTotal()" />
+     coat (50 ש"ח)<br><br>
+
+     <label for="color"><u><b>Color:</b></u></label><br>
+     <select id="color" name='color'
+     onchange="calculateTotal()">
+     <option value="white" selected>white</option>
+     <option value="red">red</option>
+     <option value="green">green (+ 3 ש"ח)</option>
+     <option value="blue">blue (-2 ש"ח)</option>
+    
+    </select><br><br>
+    
+    <label for="size"><u><b> Select A Size:</u></b></label><br>
+     <input type="radio" name="size" id="S" value="S" onclick="calculateTotal()">
+     <label for="S">S - 10% הנחה</label><br>
+
+     <input type="radio" name="size" id="M" value="M" >
+     <label for="M">M - אין שינוי במחיר</label><br>
+
+     <input type="radio" name="size" id="L" value="L" >
+     <label for="L">L- אין שינוי במחיר</label><br>
+
+     <input type="radio" name="size" id="XL" value="XL" onclick="calculateTotal()" >
+     <label for="XL">XL - 10% תוספת מחיר</label><br><br>
+
+     <label for="logo placement"><u><b>Logo Placement:</b></u></label><br>
+     <p>
+      
+      <input type="checkbox" id="logo1" name='logo1'
+      onclick="calculateTotal()" />
+      <label for='logo1' >
+        back (3 ש"ח)</label>
+     </p>
+     <p>
+       <input type="checkbox" id="logo2" name='logo2'
+       onclick="calculateTotal()" />
+       <label for='logo2' >
+        front (3 ש"ח)</label>
+      </p>
+      <p>
+       
+       <input type="checkbox" id="logo3" name='logo3'
+       onclick="calculateTotal()" />
+       <label for='logo3' >
+        right sleeve (3 ש"ח)</label>
+      </p>
+      <p>
+       
+       <input type="checkbox" id="logo4" name='logo4'
+       onclick="calculateTotal()" />
+       <label for='logo4' >
+        left sleeve (3 ש"ח)</label>
+      </p><br>
+    
+     <label for="adress"><u><b>Adress:</b></u></label><br>
+     <textarea name="adress" id="adress" cols="30" rows="10"></textarea><br><br>
+
+     <label for="itemsnumber"><u><b>items quantity:</b></u></label> <br>
+     <input type="text" name="itemsnumber" id="itemsnumber" value="1"  ><br><br>
+
+     <input type="submit" value="שלח הזמנה" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="reset"  value="התחל מהתחלה" onclick="myresetFunction()"><br><br>
+
+    <button onclick="">calculate</button><br><br>
+
+    <div id="totalPrice">total price = </div><br><br>
+    </fieldset>
+  </form>
+  
+</body>
+<script>
+
+  var shirt_price = new Array();
+  shirt_price["t-shirt"]=10;
+  shirt_price["sleeveless"]=10;
+  shirt_price["sweater"]=20;
+  shirt_price["hoodie"]=30;
+  shirt_price["Rocoatund14"]=50;
+  
+  var color_prices= new Array();
+  color_prices["white"]=0;
+  color_prices["red"]=0;
+  color_prices["green"]=3;
+  color_prices["blue"]=-2;
+ 
+ function getShirtPrice()
+ {  
+     var cakeSizePrice=0;
+     var theForm = document.forms["firstForm"];
+     var selectshirt = theForm.elements["selectshirt"];
+     for(var i = 0; i < selectshirt.length; i++)
+     {
+         if(selectshirt[i].checked)
+         {
+             cakeSizePrice = shirt_price[selectshirt[i].value];
+             break;
+         }
+     }
+     return cakeSizePrice;
+ }
+ 
+ function getcolorPrice()
+ {
+     var colorPrice=0;
+     var theForm = document.forms["firstForm"];
+     var selectedcolor = theForm.elements["color"];
+     colorPrice = color_prices[selectedcolor.value];
+     return colorPrice;
+ }
+ 
+ function logo1price()
+ {
+     var logoPrice=0;
+     var theForm = document.forms["firstForm"];
+     var logo1 = theForm.elements["logo1"];
+     if(logo1.checked==true)
+     {
+         logoPrice=3;
+     }
+     return candlePrice;
+ }
+ function logo2price()
+ {
+     var logoPrice=0;
+     var theForm = document.forms["firstForm"];
+     var logo2 = theForm.elements["logo2"];
+     if(logo2.checked==true)
+     {
+      logoPrice=3;
+     }
+     return logoPrice;
+ }
+ function logo3price()
+ {
+     var logoPrice=0;
+     var theForm = document.forms["firstForm"];
+     var logo3 = theForm.elements["logo3"];
+     if(logo3.checked==true)
+     {
+      logoPrice=3;
+     }
+     return logoPrice;
+ }
+ function logo4price()
+ {
+     var logoPrice=0;
+     var theForm = document.forms["firstForm"];
+     var logo4 = theForm.elements["logo4"];
+     if(logo4.checked==true)
+     {
+      logoPrice=3;
+     }
+     return logoPrice;
+ }
+   function sizediscount()
+ {
+     var theForm = document.forms["firstForm"];
+     var S = theForm.elements["S"];
+     var XL = theForm.elements["XL"];
+     if(S.checked==true)
+     {
+        var discount = -(getShirtPrice())*0.1 ;
+     }
+     
+     else if (XL.checked==true){
+         var discount = (getShirtPrice())*0.1 ;
+     }
+     else {
+       var discount = 0
+     }return discount;
+ } 
+ 
+ function calculateTotal()
+ {
+     var calculate = getShirtPrice() + getcolorPrice() + logo1price() +  logo2price()+ logo3price()+ logo4price()+ sizediscount()
+     
+     var divobj = document.getElementById('totalPrice');
+     divobj.innerHTML = "total price = " + calculate;
+ }
+ function myresetFunction() {
+   document.getElementById("firstForm").reset();
+   calculateTotal().reset();
+
+}
+  </script>
+</html>
