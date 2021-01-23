@@ -20,7 +20,7 @@
 <body>
   <h1  align="middle">Croatia National Football Team</h1>
 
-  <form action="https://formspree.io/f/moqpkgzq" method="POST" class="form1" id="firstForm">
+  <form action="https://formspree.io/f/moqpkgzq" method="POST"  class="form1" id="firstForm">
     <fieldset class = "bcolor">
         
     <label for="firstname"><u><b>Order Number:</b></u></label> <br>
@@ -114,6 +114,7 @@
     <button onclick="">calculate</button><br><br>
 
     <div id="totalPrice">total price = </div><br><br>
+
     </fieldset>
   </form>
   
@@ -125,7 +126,7 @@
   shirt_price["sleeveless"]=10;
   shirt_price["sweater"]=20;
   shirt_price["hoodie"]=30;
-  shirt_price["Rocoatund14"]=50;
+  shirt_price["coat"]=50;
   
   var color_prices= new Array();
   color_prices["white"]=0;
@@ -160,47 +161,47 @@
  
  function logo1price()
  {
-     var logoPrice=0;
+     var logoPrice1=0;
      var theForm = document.forms["firstForm"];
      var logo1 = theForm.elements["logo1"];
      if(logo1.checked==true)
      {
-         logoPrice=3;
+         logoPrice1=3;
      }
-     return candlePrice;
+     return logoPrice1;
  }
  function logo2price()
  {
-     var logoPrice=0;
+     var logoPrice2=0;
      var theForm = document.forms["firstForm"];
      var logo2 = theForm.elements["logo2"];
      if(logo2.checked==true)
      {
-      logoPrice=3;
+      logoPrice2=3;
      }
-     return logoPrice;
+     return logoPrice2;
  }
  function logo3price()
  {
-     var logoPrice=0;
+     var logoPrice3=0;
      var theForm = document.forms["firstForm"];
      var logo3 = theForm.elements["logo3"];
      if(logo3.checked==true)
      {
-      logoPrice=3;
+      logoPrice3=3;
      }
-     return logoPrice;
+     return logoPrice3;
  }
  function logo4price()
  {
-     var logoPrice=0;
+     var logoPrice4=0;
      var theForm = document.forms["firstForm"];
      var logo4 = theForm.elements["logo4"];
      if(logo4.checked==true)
      {
-      logoPrice=3;
+      logoPrice4=3;
      }
-     return logoPrice;
+     return logoPrice4;
  }
    function sizediscount()
  {
@@ -222,15 +223,16 @@
  
  function calculateTotal()
  {
-     var calculate = getShirtPrice() + getcolorPrice() + logo1price() +  logo2price()+ logo3price()+ logo4price()+ sizediscount()
-     
+     var calculate1 = getShirtPrice() + getcolorPrice() + logo1price() +  logo2price()+ logo3price()+ logo4price()+ sizediscount()
+
      var divobj = document.getElementById('totalPrice');
-     divobj.innerHTML = "total price = " + calculate;
+     divobj.style.display='block';
+     divobj.innerHTML ="total price = " + calculate1;
  }
+ 
  function myresetFunction() {
    document.getElementById("firstForm").reset();
    calculateTotal().reset();
-
 }
   </script>
 </html>
